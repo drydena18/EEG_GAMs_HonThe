@@ -3,6 +3,7 @@ fileTag = 'ICArem';
 
 % Define the main directory where the subfolders are located
 mainDir = '/Users/drydenarseneau/GAMs_Thesis/HBN_Data/EEG_GAMs_Data/Analyzed';
+srDIR = '/Users/drydenarseneau/GAMs_Thesis/HBN_Data/EEG_GAMs_Data/Merged_Data';
 
 if ~isfolder(mainDir)
     error(['Main directory "' mainDir '" does not exist.']);
@@ -18,12 +19,19 @@ subFolders = subFolders(~ismember({subFolders.name}, {'.', '..'}));  % Remove '.
 disp('Subfolders found in mainDir:');
 disp({subFolders.name});
 
+if ~exist('pop_loadset', 'file')
+    eeglab('nogui');
+end
+
+samplingRateInfo = {};
+
 % Initialize an empty cell array to store EEG datasets
 EEG_sets = {};
 
 % Loop through each subfolder
 for i = 1:length(subFolders)
     % Define the current subfolder path
+    folderName = subFolders(i).name;
     subFolderPath = fullfile(mainDir, subFolders(i).name);
 
     disp(['Searching in folder: ' subFolderPath]);
@@ -47,8 +55,21 @@ for i = 1:length(subFolders)
         
         % Store the dataset in the cell array
         EEG_sets{end+1} = EEG;
+
+        samplingRate = EEG.srate;
+        samplingRateInfo{end+1, 1} = folderName;
+        samplingRateInfo{end, 2} = setFiles(j).name;
+        samplingRateInfo{end, 3} = samplingRate;
     end
 end
+
+disp('Folder Name | File Name | Sampling Rate (Hz)');
+disp(samplingRateInfo);
+
+srPATH = '/Users/drydenarseneau/GAMs_Thesis/HBN_Data/EEG_GAMs_Data/Merged_Data/sampling_rates_info.csv';
+writecell(samplingRateInfo, srPATH);
+disp(['File saved to: ' srPATH]);
+%disp(['Sampling rates information saved to: ' fullfile(srDIR, 'sampling_rates_info.csv')]);
 
 % Check if any datasets were loaded
 if isempty(EEG_sets)
@@ -74,12 +95,12 @@ disp(['Most common sampling rate: ' num2str(commonSR) ' Hz.']);
   %  disp('All datasets have the same sampling rate.');
 %end
 
-for k = 1:length(EEG_sets)
-    if EEG_sets{k}.srate ~= commonSR
-        EEG_sets{k} = pop_resample(EEG_sets{k}, commonSR);
-        disp(['Resampled dataset ' num2str(k) ' from ' num2str(samplingRates(k)) ' Hz to ' num2str(commonSR) ' Hz.']);
-    end
-end
+%for k = 1:length(EEG_sets)
+ %   if EEG_sets{k}.srate ~= commonSR
+  %      EEG_sets{k} = pop_resample(EEG_sets{k}, commonSR);
+   %     disp(['Resampled dataset ' num2str(k) ' from ' num2str(samplingRates(k)) ' Hz to ' num2str(commonSR) ' Hz.']);
+    %end
+%end
 
 % Concatenate datasets if needed (e.g., for group analysis)
 if length(EEG_sets) > 1
