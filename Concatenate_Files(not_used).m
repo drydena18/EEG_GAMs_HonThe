@@ -1,3 +1,5 @@
+% Was used to combine all EEG datasets together. Code was unused in the final project
+
 % Define the specific tag to look for in the file names ('ICArem')
 fileTag = 'ICArem';
 
