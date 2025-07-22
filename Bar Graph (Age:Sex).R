@@ -1,3 +1,5 @@
+##Used to create a stacked histogram to compare Male and Female participants.
+
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
