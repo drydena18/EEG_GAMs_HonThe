@@ -1,3 +1,5 @@
+## Script to run final data anlysis on all brainwise connections. Runs GAMs, then checks significant values, if none, moves on, if there are any, creates a sliding window acceleration graph.
+
 ## use ALT + O (windows) or opt + comd + o (mac) to collapse sections
 library(haven)
 library("tidyverse")
