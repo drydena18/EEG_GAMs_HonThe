@@ -1,3 +1,5 @@
+# Like GAMs.R, this file was the original, fully laid-out GAMs analysis. Don't use this one.
+
 library(mgcv)
 library(itsadug)
 library(mgcViz)
