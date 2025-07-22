@@ -1,3 +1,5 @@
+% Unused script. Acted as a shell to run correlation according to wPLI values per participant. This was a mistake, as I misunderstood what was being asked of me.
+
 % Step 1: Set file path
 onedrive_path = 'C:\Users\drydenarseneau\OneDrive\EEG_GAMs';
 
