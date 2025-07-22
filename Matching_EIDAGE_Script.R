@@ -1,3 +1,5 @@
+## Script used to match the EID (participant numbers) to Age, Sex, EHQ_Total (handedness_, and Use (Yes, No, Too Noisy). My files kept corrupting, hence the existence of this script.
+
 library("broom")
 library("rgl")
 library("tidyverse")
