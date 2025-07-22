@@ -1,3 +1,5 @@
+% Run preproccessing steps on each participant's EEG data. Download the participant, enter their file name, press enter. Follow the prompts on screen.
+
 function dataimport_Mov_Present_HBN(basename, varargin)
 
 addpath(genpath('/Users/drydenarseneau/GAMs_Thesis/matlab_scripts'))
