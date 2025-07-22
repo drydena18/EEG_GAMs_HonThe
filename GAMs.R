@@ -1,3 +1,5 @@
+# Runs GAMs one-by-one for each connection. Don't use this one.
+
 library(mgcv)
 library(itsadug)
 library(mgcViz)
