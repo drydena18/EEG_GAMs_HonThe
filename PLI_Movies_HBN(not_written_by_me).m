@@ -1,3 +1,5 @@
+% Script to run wPLI on the EEG data. Alter file paths as needed.
+
 function PLI_Movies_HBN
 
 pth = '/Users/bobbystojanoski/Library/CloudStorage/OneDrive-OntarioTechUniversity/Ontario Tech University/Experiments/EEG_GAMs/Prepocessed_data/';
